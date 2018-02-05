@@ -1,0 +1,193 @@
+   {% extends 'mvpadmin_layout.html' %}
+
+   {% load staticfiles %}
+
+   {% block title_block %}
+   <title>Labels</title>
+   
+   {% endblock %}
+
+   {% block css_block %}
+
+  
+   <link rel="stylesheet" href="{% static 'css/jquery.toast.css' %}">
+   {% endblock %}
+
+
+   {% block content %}
+
+   <div class="container">
+   <form method="POST" id="commision_form">
+   {% csrf_token %}
+    <table class="vendor_page" border="1">
+      <thead>
+        <th>Label</th>
+        <th>Status</th>
+        <th>Commission (in %)</th>
+      </thead>
+
+      <tbody>
+
+      {% for user in users_list %}
+        <tr data-attr="{{user.user_id}}">
+          <td><a href="/mvpadmin/labels/products?user_id={{user.user_id}}&label={{user.user_name}}">{{user.user_name}}</a></td>
+
+          <td>
+            <input type="radio" class="enable-user" name="enable_user_{{user.user_id}}" {% if user.status == 1 %} checked {% endif %} id="userenable_{{user.user_id}}" value="enable">
+            <label for="userenable_{{user.user_id}}">Enabled</label>
+          
+          <input type="radio" class="disable-user" id="userdisable_{{user.user_id}}" name="enable_user_{{user.user_id}}" {% if user.status == 0 %} checked {% endif %} value="disable">
+          <label for="userdisable_{{user.user_id}}">Disabled</label>
+          </td>
+          <td><input type="number" name="{{user.user_id}}" class="labels_commision" value="{{user.commission}}" min="0" max="100"></td>
+        </tr>
+      {% endfor %}
+      </tbody>
+    </table>
+    <div style="text-align: center;">
+      <input class="save_commissions btn btn-primary" type="submit" name="submit" value="Save">
+    </div>
+    </form>
+    </div>
+
+    
+
+    <div style="text-align: center;">
+      {% if users_list.has_other_pages %}
+      <ul class="pagination  hidden-x">
+        {% if users_list.has_previous %}
+          <li><a href="?page={{ users_list.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in users_list.paginator.page_range %}
+          {% if users_list.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if users_list.has_next %}
+          <li><a href="?page={{ users_list.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+  {% endif %} 
+    </div>
+    
+
+   {% endblock %}
+
+{% block js %}
+
+ <script type="text/javascript" src="{% static 'js/jquery.toast.js' %}"></script>
+
+<script type="text/javascript">
+
+  var token = "{{csrf_token}}";
+
+   function toastNotificaitons(heading,text)
+       {
+        $.toast({
+        heading: "<span class='heading'>"+heading+"</span>",
+        text: text,
+        showHideTransition: 'slide',
+        icon: 'success',
+        position: 'top-right',
+        hideAfter: 2000,
+        //hideAfter: 5000,  
+        stack: 100
+        });
+
+       }
+
+  $('.disable-user').click(function(event){
+    
+      $(this).parent().find(".enable-user").prop('checked', false);
+      var user_id = $(this).parent().parent().attr('data-attr');
+
+      $.ajax({
+          type: 'POST',
+          url: '/mvpadmin/user_status',
+          data: {'user_id': user_id, 'status': 0, 'csrfmiddlewaretoken': token},
+          success: function(response){
+
+            var res = JSON.parse(response);
+
+            if (res.success){
+               toastNotificaitons("Disabled Account", "Label Account is disabled successfully.");   
+            }
+            
+            if (res.error){
+              toastNotificaitons("Error", res.error);   
+            }
+
+            if (res.already_updated){
+              toastNotificaitons("Already Disabled", "Label Account is already disabled.");
+            }
+           
+          }
+      });
+  });
+
+  $('.enable-user').click(function(event){
+    
+    $(this).parent().find(".disable-user").prop('checked', false);
+
+    var user_id = $(this).parent().parent().attr('data-attr');
+
+    $.ajax({
+          type: 'POST',
+          url: '/mvpadmin/user_status',
+          data: {'user_id': user_id, 'status': 1, 'csrfmiddlewaretoken': token},
+          success: function(response){
+            
+            var res = JSON.parse(response);
+
+            if (res.success){
+                toastNotificaitons("Enabled Account", "Label Account is enabled successfully.");
+            }
+            
+            if (res.error){
+              toastNotificaitons("Error", res.error);   
+            }
+
+            if (res.already_updated){
+              toastNotificaitons("Already Enabled", "Label Account is already enabled.");
+            }
+          }
+      });
+  });  
+
+ $(function(){
+  $('form#commision_form').on('submit', function(e){
+    var arr=[];
+    e.preventDefault();
+
+    var id_arr = [];
+    var val_arr = [];
+    $('input.labels_commision').each(function(){
+
+        var i=($(this).attr('name'));
+        id_arr.push(i);
+        var val= ($(this).val());
+        val_arr.push(val);
+        
+
+    });
+    
+    $.ajax({
+      url: '/mvpadmin/add_commision',
+      method: 'POST',
+      data: {'labels_id': id_arr, 'labels_val': val_arr, 'csrfmiddlewaretoken': "{{csrf_token}}"},
+      success: function(response){
+        toastNotificaitons("Commission Added", "Label commission is added successfully.");
+      }
+    });
+ 
+ });
+
+});
+</script>
+{% endblock %}

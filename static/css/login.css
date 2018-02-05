@@ -1,0 +1,293 @@
+.form-signin
+{
+    max-width: 800px;
+    padding: 15px;
+    margin: 0 auto;
+}
+.form-signin .form-signin-heading, .form-signin .checkbox
+{
+    margin-bottom: 10px;
+}
+.form-signin .checkbox
+{
+    font-weight: normal;
+}
+.form-signin .form-control
+{
+    position: relative;
+    font-size: 16px;
+    height: auto;
+    padding: 10px;
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+.form-signin .form-control:focus
+{
+    z-index: 2;
+}
+.form-signin input[type="text"]
+{
+    margin-bottom: -1px;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+.form-signin input[type="password"]
+{
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+/*.account-wall
+{
+    margin-top: 20px;
+    padding: 40px 0px 20px 0px;
+    background-color: #dedede;
+    -moz-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    -webkit-box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+    box-shadow: 0px 2px 2px rgba(0, 0, 0, 0.3);
+}*/
+.login-title
+{
+    color: #555;
+    font-size: 18px;
+    font-weight: 400;
+    display: block;
+}
+.profile-img
+{
+    width: 96px;
+    height: 96px;
+    margin: 0 auto 10px;
+    display: block;
+    -moz-border-radius: 50%;
+    -webkit-border-radius: 50%;
+    border-radius: 50%;
+}
+.need-help
+{
+    margin-top: 10px;
+}
+.new-account
+{
+    display: block;
+    margin-top: 10px;
+}
+input.error, textarea.error {
+    background-image: url("../images/error.png");
+    background-position: right center;
+    background-repeat: no-repeat;
+    border-color: #f56954 !important;
+}
+
+
+/*#signin_form input, #signup_form input {
+    margin: 8px 0;
+}*/
+#signin_form button, #signup_form button {
+    padding: 9px 0;
+    width: 100%;
+    margin-top: 15px;
+}
+
+#signin_form label, #signup_form label {
+    width: 100%;
+}
+#signin_form label.error, #signup_form label.error {
+    font-size: 12px;
+    color: #da4336;
+}
+
+/*.errorlist.nonfield {
+    margin: 0px;
+    padding: 0;
+    list-style: none;
+    color: #da4336;
+}*/
+.errorlist.nonfield {
+  color: #da4336;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: bold;
+  list-style: outside none none;
+  margin-left: 20px;
+  padding: 0;
+}
+
+a.new-account {
+    background-color: #FF6B6B;
+    padding: 10px 0;
+    border-radius: 4px;
+    color: #fff;
+    margin: 20px auto;
+    text-decoration: none;
+}
+.account-wall img {
+  width: 130px;
+}
+.logo-image {
+  text-align: center;
+}
+#terms-and-conditions {
+  color: #757575;
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+}
+
+/* Added 11 april-17*/
+
+#signup_form .form-group {
+  float: left;
+  padding: 0 15px;
+  width: 50%;
+}
+
+/* Added 13 april- 17 */
+.account-wall {
+  background-color: #dedede;
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.3);
+  margin-bottom: -38px;
+  margin-top: 20px;
+  padding: 40px 0 45px;
+}
+.forgot_pass {
+  display: block;
+  margin-bottom: 40px !important;
+  text-align: center;
+}
+#recover_form .error{
+  color: #da4336;
+}
+.close {
+  padding-right: 15px;
+  padding-top: 10px;
+}
+/*.back_screen {
+  left: 50%;
+  margin: 0 auto;
+  max-width: 680px;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 100%;
+}
+.messages-circle {
+  background-color: rgba(0, 0, 0, 0.4);
+  float: left;
+  height: 100%;
+  max-width: 100%;
+  position: fixed;
+  width: 100%;
+  z-index: 999;
+}
+.messages-circle .alert-success {
+  padding: 50px;
+}
+*/
+
+.alert-success{
+  padding: 12px;
+}
+#recover_form .btn-block {
+  display: block;
+  padding: 9px 0;
+  width: 100%;
+  margin-top: 40px;
+}
+.sign_title {
+  margin-top: 0;
+}
+#labels_only {
+  display: inline-block;
+  font-size: 18px;
+  text-align: center;
+  width: 100%;
+}
+.form-signin button {
+  padding: 9px 0;
+  width: 100%;
+  margin-top: 15px;
+}
+.forgot_pwd-form button {
+  padding: 9px 0;
+  width: 100%;
+  margin-top: 40px;
+}
+.forgot_pwd-form {
+  padding: 15px 15px 0px;
+}
+.forgot_pwd-form a.vendor-login {
+  display: block;
+  text-align: center;
+  padding-top: 15px;
+  font-size: 16px;
+}
+#signmagento .form-group {
+  float: left;
+  padding: 0 15px;
+  width: 50%;
+}
+#signmagento .form-group.email {
+  width: 100%;
+}
+.form-signin label.error, .forgot_pwd-form label.error {
+  font-size: 12px;
+  color: #da4336;
+  display: block;
+}
+.success {
+  background: #18bc9c;
+  color: #fff;
+  padding: 15px;
+  border: none;
+  margin: 0 0 25px;
+  width: 100%;
+}
+h5.status {
+  background: #fde7b9;
+  padding: 15px;
+  margin-bottom: 20px;
+}
+#mag_vender_forget_email_success_msg {
+  word-break: break-all;
+  background: #18bc9c;
+  color: #fff;
+  padding: 15px;
+  border: none;
+  margin: 0 0 25px;
+  width: 100%;
+  font-weight: 300;
+  font-size: 15px;
+}
+
+
+
+/* responsive style start here */
+
+@media screen and (max-width: 479px) {
+
+#signmagento div.form-group {
+  width: 100%;
+}
+
+
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 360px) {
+#signup_form label {
+  font-size: 12px;
+}
+.form-signin .form-control {
+  font-size: 14px;
+  padding: 5px;
+}
+.form-signin {
+  padding: 10px;
+}
+#signup_form .form-group {
+  padding: 0 10px;
+}
+}

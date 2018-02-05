@@ -1,0 +1,9 @@
+ <h2>Account</h2>
+    <ul>
+        {% for account in all_accounts %}
+        <br>
+            <li>{{ account.first_name }}</li>
+            <li>{{ account.last_name }}</li>
+            <li>{{ account.emailid }}</li>
+        {% endfor %}
+    </ul>

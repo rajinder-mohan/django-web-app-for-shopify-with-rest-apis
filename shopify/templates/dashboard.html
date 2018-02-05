@@ -1,0 +1,244 @@
+{% extends 'mvpadmin_layout.html' %}
+
+{% load static %}
+{%  load image_tags %}
+{% block title_block %}
+<title>{{page_name}}</title>
+{% endblock %}
+
+{% block css_block %}
+  <link href="{% static 'css/style.css' %}" rel="stylesheet" type="text/css" />
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+    <div class="well well-sm all_products">
+        <strong>{{vendor_name}}</strong>
+
+        {% if products_type == 'orders_products' %}
+          <span><strong>Total Amount : </strong>€{{total_amount}}</span>
+        {% endif %}
+    </div>
+    <div id="products" class="row list-group">
+        {% if products_type != 'orders_products' %}
+    	   {% for product in  products_list %}
+            
+	            <div class="item col-lg-4 col-md-4 col-sm-6 col-xs-12 mvp_all_product">
+	               <div class="thumbnail">
+                        <img src="https://app.fashioncircle.de/media/{{product.image}}" />
+                        <div class="caption">
+	                       <h4 class="group inner list-group-item-heading">
+	                        {{product.title}}
+                            
+                            {% if vendor_name == "My Products" %}
+                                <button onclick="delete_product('{{product.id}}');" class="pull-right deleteproduct">Delete</button></h4>
+                            {% endif %}
+
+                            {% if product.description %}
+                                <p class="group inner list-group-item-text">{{product.description}}</p>
+                            {% endif %}
+	                    
+                            {% if product.selling_price %}
+                                <p>MSRP :  €{{product.selling_price}}</p>
+                            {% endif %}
+
+                            {% if product.dropshipping_price %}
+                                <p>Dropshipping Price :  €{{product.dropshipping_price}}</p>
+                            {% endif %}
+
+                            {% if product.wholesale_price %}
+                                <p>Wholesale Price :  €{{product.wholesale_price}}</p>
+                            {% endif %}
+
+                            {% if product.sku %}
+                                <p>SKU :  {{product.sku}}</p>
+                            {% endif %}
+
+                            {% if product.quantity %}
+                                <p>Quantity :  {{product.quantity}}</p>
+                            {% endif %}
+
+
+                            {% if product.quantity_ordered %}
+                                <p>Ordered Quantity :  {{product.quantity_ordered}}</p>
+                            {% endif %}
+
+                            {% if product.calculated_price %}
+                                <p>Total Price :  €{{product.calculated_price}}</p>
+                            {% endif %}
+
+                            {% if product.weight %}
+                                <p>Weight :  {{product.weight}}</p>
+                            {% endif %}
+
+                            {% if product.weight_unit %}
+                                <p>Weight Unit :  {{product.weight_unit}}</p>
+                            {% endif %}
+	                   </div>
+	               </div>
+	           </div>
+            {% endfor %}
+        {% else %}
+            <div class="monthly_orders">
+                {% for order in order_list %}
+                    <h5>Order No.: {{order.OrderId}}</h5>
+                    <span>Date.: {{order.order_date}}</span>
+                    <table border="1" class="table-striped table">
+                        <thead class="thead-inverse">
+                            <tr>
+                                <td> Image</td>
+                                <td>Product Title</td>
+                                <td>Quantity</td>
+                                <td>Total Price</td>
+                                {% if order.shopify_domain %}
+                                    <td>Shopify Domain</td>
+                                {% endif %}
+                                {% if order.platform %}
+                                    <td>Platform</td>
+                                {% endif %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for key, value in order.items %}
+                                {% if key != "OrderId" and key != "shopify_domain" and key != "platform" and key != "order_date" %}
+                                    {% for detail in value %}
+                                        <tr>
+                                            <td><img src="{{detail.image}}"></td>
+                                            <td>{{detail.product_name}}</td>
+                                            <td>{{detail.ProductQty}}</td>
+                                            <td>€{{detail.total_price}}</td>
+                                            {% if order.shopify_domain %}
+                                                <td>{{order.shopify_domain}}</td>
+                                            {% endif %}
+                                            {% if order.platform %}
+                                                <td>{{order.platform}}</td>
+                                            {% endif %}
+                                        </tr>
+                                    {% endfor %}
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% endfor %}
+            </div>
+        {% endif %}
+        
+        <div class="mvp-empty">
+            {% if products_type == 'orders_products' and not order_list %}
+                <h3>No Orders.</h3>
+            {% endif %}
+
+            {% if not products_list and not products_type %}
+        	   <h3>No Products.</h3>
+                {% if vendor_name == "My Products" %}
+                    {% if account_type.admin == True %}
+                        <a href="/mvpadmin/products/add">Click here</a> to add products.
+                    {% else %}
+                        <a href="/products/add">Click here</a> to add products.
+                    {% endif %}
+                {% endif %}
+            {% endif %}
+        </div>
+	</div>
+
+    <!-- start pagination of products -->
+    {% if products_list.has_other_pages %}
+        <ul class="pagination  hidden-x">
+            {% if products_list.has_previous %}
+                {% if vendor_name == "My Products" %}
+                    <li><a href="?page={{ products_list.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li><a href="?user_id={{user_id}}&page={{ products_list.previous_page_number }}&user_name={{vendor_name}}">&laquo;</a></li>
+                {% endif %}
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            
+            {% for i in products_list.paginator.page_range %}
+                {% if products_list.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    {% if vendor_name == "My Products" %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% else %}
+                        <li><a href="?user_id={{user_id}}&page={{ i }}&user_name={{vendor_name}}">{{ i }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            
+            {% if products_list.has_next %}
+                {% if vendor_name == "My Products" %}
+                    <li><a href="?page={{ products_list.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li><a href="?user_id={{user_id}}&page={{ products_list.next_page_number }}&user_name={{vendor_name}}">&raquo;</a></li>
+                {% endif %}
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+    <!-- end pagination of products -->
+
+
+    <!-- start pagination of orders -->    
+    {% if order_list.has_other_pages %}
+        <ul class="pagination  hidden-x">
+            {% if order_list.has_previous %}
+                {% if existing_label %}
+                    <li><a href="?label={{existing_label}}&page={{ order_list.previous_page_number }}">&laquo;</a></li>
+                {% else %}
+                    <li><a href="?page={{ order_list.previous_page_number }}">&laquo;</a></li>
+                {% endif %}
+            {% else %}
+                <li class="disabled"><span>&laquo;</span></li>
+            {% endif %}
+            
+            {% for i in order_list.paginator.page_range %}
+                {% if order_list.number == i %}
+                    <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+                {% else %}
+                    {% if existing_label %}
+                        <li><a href="?label={{existing_label}}&page={{ i }}">{{ i }}</a></li>
+                    {% else %}
+                        <li><a href="?page={{ i }}">{{ i }}</a></li>
+                    {% endif %}
+                {% endif %}
+            {% endfor %}
+            
+            {% if order_list.has_next %}
+                {% if vendor_name == "My Products" %}
+                    <li><a href="?page={{ order_list.next_page_number }}">&raquo;</a></li>
+                {% else %}
+                    <li><a href="?user_id={{user_id}}&page={{ order_list.next_page_number }}&user_name={{vendor_name}}">&raquo;</a></li>
+                {% endif %}
+            {% else %}
+                <li class="disabled"><span>&raquo;</span></li>
+            {% endif %}
+        </ul>
+    {% endif %}
+</div>	
+{% endblock %}
+
+{% block js %}
+<script type="text/javascript">
+  function delete_product(product_id){
+    
+    $.ajax({
+      url: '/products/delete',
+      method: 'POST',
+      data: {'product_id': product_id, 'csrfmiddlewaretoken': '{{csrf_token}}'},
+      success: function(response){
+        alert(response);
+
+        res = JSON.parse(response);
+
+        if (res.success){
+          location.reload();
+        }
+
+      }
+    });
+  }
+</script>
+{% endblock %}

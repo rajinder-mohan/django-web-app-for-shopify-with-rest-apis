@@ -1,0 +1,234 @@
+{% extends "merchant/mag_mer_base.html" %}
+{% load staticfiles %}
+{% load added %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block css %}
+<link  href="https://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+
+		<div id="tabs" class="clearfix">
+			<ul class="tabs clearfix" data-tabgroup="first-tab-group">
+				<li><a id="1" class="active" href="#home-tab">Home</a></li>
+				<li><a id="2" href="#order-tab">Orders</a></li>
+			</ul>
+		  	<div id="first-tab-group" class="tabgroup">
+				<div id="home-tab">
+					<div class="product-list-section clearfix">
+						<ul class="prodlist-ul">
+              {% for product in products %}
+
+                {% if product.id|added:merchant_id %}
+                <li class="product-added">
+                    <form action="{% url 'mag_mer_remove_product' %}" method="get">
+                      <input type="hidden" name="id" value="{{ product.id|added:merchant_id }}">
+                {% else %}
+                <li>
+                    <form action="{% url 'mag_mer_add_product' %}" method="get">
+                      <input type="hidden" name="id" value="{{ product.id }}">
+                {% endif %}
+
+  								<div class="product-list-div">
+                    {% if product.images_set.all|length > 1 %}
+  									   <div class="fotorama product-img-wrap" id="images_slider{{ product.id }}" data-width="100%" data-allowfullscreen="true" data-loop="true">
+                    {% else %}
+                        <div class="fotorama product-img-wrap mvp-custom-class" id="images_slider{{ product.id }}" data-width="100%" data-allowfullscreen="true" data-loop="true">
+                    {% endif %}
+
+                      {% if product.images_set.all %}
+                        {% for image in product.images_set.all %}
+    										   <img src="{{ image.image.url }}">
+                        {% endfor %}
+                      {% else %}
+                         <img src="{% static 'images/img1.jpg' %}">
+                      {% endif %}
+  									</div>
+  									<div class="product-content-wrap" data-id='{{ product.id }}'>
+  										<h3 class="product-title">{{ product.title }}</h3>
+  										<span class="product-vendor">{{ product.user.first_name|title }}</span>
+                      {% if product.isconfig %}
+                        {{ product.varient_value|varientdata|safe }}
+                      {% endif %}
+  										<span class="product-price">{{ product.selling_price }}</span>
+  										<div class="add-cart-btn">
+                        {% if product.id|added:merchant_id %}
+                          <input class="add-to-shop" type="submit" value="Remove from Magento">
+                        {% else %}
+                          <input class="add-to-shop" type="submit" value="Add to Magento">
+                        {% endif %}
+  										</div>
+  									</div>
+  								</div>
+                </form>
+							</li>
+              {% endfor %}
+						</ul>
+            {% if products.has_other_pages %}
+            <div class="pagination">
+        			<ul class="pagination-list">
+                {% if products.has_previous %}
+        				    <li><span class="left-arrow"><a href="?page={{ products.previous_page_number }}&tabv=1"><img src="{% static 'images/left-arrow.png' %}"></a></span></li>
+                {% else %}
+                   <li class="disabled"><span class="left-arrow"><img src="{% static 'images/left-arrow.png' %}"></span></li>
+                {% endif %}
+                {% for i in products.paginator.page_range %}
+                   {% if products.number == i %}
+                     <li class="active"><a href="#">{{ i }}</a></li>
+                   {% else %}
+                     <li><a href="?page={{ i }}&tabv=1">{{ i }}</a></li>
+                   {% endif %}
+                {% endfor %}
+                {% if products.has_next %}
+                   <li><span class="left-arrow"><a href="?page={{ products.next_page_number }}&tabv=1"><img src="{% static 'images/right-arrow.png' %}"></a></span></li>
+                {% else %}
+                   <li  class="disabled"><span class="left-arrow"><img src="{% static 'images/right-arrow.png' %}"></span></li>
+              {% endif %}
+        			</ul>
+        		</div>
+            {% endif %}
+					</div>
+				</div>
+				<div id="order-tab" class="order-tab">
+					<div class="order-wrap-row">
+						<h3 class="vendor-title">Orders not yet paid to vendor</h3>
+            {% if unpaid %}
+						<div class="vendor-table">
+							<div class="order-head">
+								<div class="order-vendor-row">
+									<span class="col col-1">Vendor Name</span>
+									<span class="col col-2">Total Price</span>
+									<span class="col col-3">Order ID</span>
+									<span class="col col-4">Action</span>
+								</div>
+							</div>
+
+							<div class="order-body">
+                {% for order in unpaid %}
+								<div class="order-vendor-row">
+  									<span class="col col-1" title="{{ order.id|vendors }}">{{ order.id|vendors|title }}</span>
+  									<span class="col col-2">${{ order.total_amount }}</span>
+  									<span class="col col-3">#{{ order.id }}</span>
+                    <span class="col col-4">
+                      <form action="{% url 'mag_mer_paypal' %}" method="POST">
+                        {% csrf_token %}
+                        <input type="hidden" name="id" value="{{ order.id }}">
+    									  <button name="action" type="submit"><img src="{% static 'images/paypal.png' %}"></button>
+                      </form>
+                    </span>
+								</div>
+                {% endfor %}
+								<!-- <div class="order-vendor-row">
+									<span class="col col-1">Fashion Circle Test spanbel</span>
+									<span class="col col-2">$493.24</span>
+									<span class="col col-3">#1022 #1023</span>
+									<span class="col col-4"><img src="{% static 'images/paypal.png' %}"></span>
+								</div> -->
+
+							</div>
+						</div>
+            {% else %}
+              <div class="no-unpaid-order">No order found.</div>
+            {% endif %}
+            {% if unpaid.has_other_pages %}
+            <div class="pagination">
+        			<ul class="pagination-list">
+                {% if unpaid.has_previous %}
+        				    <li><span class="left-arrow"><a href="?page={{ unpaid.previous_page_number }}&tabv=2"><img src="{% static 'images/left-arrow.png' %}"></a></span></li>
+                {% else %}
+                   <li class="disabled"><span class="left-arrow"><img src="{% static 'images/left-arrow.png' %}"></span></li>
+                {% endif %}
+                {% for i in unpaid.paginator.page_range %}
+                   {% if unpaid.number == i %}
+                     <li class="active"><a href="#">{{ i }}</a></li>
+                   {% else %}
+                     <li><a href="?page={{ i }}&tabv=2">{{ i }}</a></li>
+                   {% endif %}
+                {% endfor %}
+                {% if unpaid.has_next %}
+                   <li><span class="left-arrow"><a href="?page={{ unpaid.next_page_number }}&tabv=2"><img src="{% static 'images/right-arrow.png' %}"></a></span></li>
+                {% else %}
+                   <li  class="disabled"><span class="left-arrow"><img src="{% static 'images/right-arrow.png' %}"></span></li>
+              {% endif %}
+        			</ul>
+        		</div>
+            {% endif %}
+					</div><div class="order-wrap-row">
+						<h3 class="vendor-title">Orders paid to vendors</h3>
+            {% if paid %}
+						<div class="vendor-table">
+							<div class="order-head">
+								<div class="order-vendor-row">
+									<span class="col col-1">Vendor Name</span>
+									<span class="col col-2">Total Price</span>
+									<span class="col col-3">Order ID</span>
+									<span class="col col-4">Status</span>
+								</div>
+							</div>
+							<div class="order-body">
+                {% for order in paid %}
+								<div class="order-vendor-row">
+									<span class="col col-1">{{ order.id|vendors|title }}</span>
+									<span class="col col-2">${{ order.total_amount }}</span>
+									<span class="col col-3">#{{ order.id }}</span>
+									<span class="col col-4"><a class="paid-btn" href="javascript:void();">Paid</a></span>
+                  {% endfor %}
+								</div>
+								{% else %}
+                  <div class="no-paid-order">No order found.</div>
+                {% endif %}
+                {% if paid.has_other_pages %}
+                <div class="pagination">
+            			<ul class="pagination-list">
+                    {% if paid.has_previous %}
+            				    <li><span class="left-arrow"><a href="?page={{ paid.previous_page_number }}&tabv=2"><img src="{% static 'images/left-arrow.png' %}"></a></span></li>
+                    {% else %}
+                       <li class="disabled"><span class="left-arrow"><img src="{% static 'images/left-arrow.png' %}"></span></li>
+                    {% endif %}
+                    {% for i in paid.paginator.page_range %}
+                       {% if paid.number == i %}
+                         <li class="active"><a href="#">{{ i }}</a></li>
+                       {% else %}
+                         <li><a href="?page={{ i }}&tabv=2">{{ i }}</a></li>
+                       {% endif %}
+                    {% endfor %}
+                    {% if paid.has_next %}
+                       <li><span class="left-arrow"><a href="?page={{ paid.next_page_number }}&tabv=2"><img src="{% static 'images/right-arrow.png' %}"></a></span></li>
+                    {% else %}
+                       <li  class="disabled"><span class="left-arrow"><img src="{% static 'images/right-arrow.png' %}"></span></li>
+                  {% endif %}
+            			</ul>
+            		</div>
+                {% endif %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+
+  	</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+
+$('.tabgroup > div').hide();
+$('.tabgroup > div:first-of-type').show();
+$('.tabs a').click(function(e){
+  e.preventDefault();
+    var $this = $(this),
+        tabgroup = '#'+$this.parents('.tabs').data('tabgroup'),
+        others = $this.closest('li').siblings().children('a'),
+        target = $this.attr('href');
+    others.removeClass('active');
+    $this.addClass('active');
+    $(tabgroup).children('div').hide();
+    $(target).show();
+
+})
+</script>
+{% endblock %}

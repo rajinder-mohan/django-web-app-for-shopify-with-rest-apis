@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Login</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  {% load staticfiles %}
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+  </head>
+<body>
+	<div class="container">
+            <div class="messages">
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+          </div>
+    <div class="row">
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title">Sign in to continue to Our Portal</h1>
+            <div class="account-wall">
+                <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                    alt="">
+                <form class="form-signin" method="POST" action="/" id="signin_form">
+                {% csrf_token %}
+
+				{{form.as_p}}
+                <input type="text" class="form-control" placeholder="Email" name="emailid" id="emailid" autofocus>
+                <input type="password" class="form-control" name="password" id="passInput" placeholder="Password">
+                <input type="hidden" name="next" value="{{ next }}" />
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Sign in</button>
+                
+                </form>
+            </div>
+            <a href="/register" class="text-center new-account">Create an account </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script type="text/javascript">
+  
+  $("#signin_form").validate({
+       rules: {
+        emailid: {
+          required: true,
+          email: true
+        },
+        vendor: "required",
+        password: {
+          required: true,
+        }
+       },
+       submitHandler: function(form){
+        form.submit();
+       }
+    });
+</script>
+
+
+</body>
+</html>
+

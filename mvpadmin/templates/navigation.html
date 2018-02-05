@@ -1,0 +1,97 @@
+ <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                {% if account_type.admin == True %}
+                    <a class="navbar-brand active" href="{% url 'mvpadmin' %}">
+                    <img class="desktop-img" src="/static/images/fc_logo2.png">
+                    <img class="mobile-img" src="/static/images/Logo_Fashioncircle.png" alt="FasionCircle Logo">
+                    </a>
+
+                {% else %}
+                    <a class="navbar-brand active" href="/dashboard">
+                    <img class="desktop-img" src="/static/images/fc_logo2.png">
+                    <img class="mobile-img" src="/static/images/Logo_Fashioncircle.png" alt="FasionCircle Logo">
+                    </a>
+                {% endif %}
+            </div>
+            <!-- Top Menu Items -->
+            <ul class="nav navbar-right top-nav">
+
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle user" data-toggle="dropdown"><i class="fa fa-user">&nbsp;</i>{{user_name}} <b class="caret"></b></a>
+                    <ul class="dropdown-menu">
+                       
+                        <li class=""></li>
+                        <li>
+                            <a href="{% url 'logout' %}"><i class="fa fa-fw fa-power-off"></i> Log Out</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <!-- Sidebar Menu Items - These collapse to the responsive navigation menu on small screens -->
+            <div class="collapse navbar-collapse navbar-ex1-collapse">
+                <ul class="nav navbar-nav side-nav">
+                    {% if account_type.admin == True %}                    
+                    <li class="{% if page_name == 'Dashboard' %}active{% endif %}">
+                        <a href="/mvpadmin/"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    {% else %}
+                    <li class="{% if page_name == 'Dashboard' %}active{% endif %}">
+                        <a href="/dashboard"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                    </li>
+                    {% endif %}
+
+                    {% if account_type.admin == True %}
+                    <li class="{% if page_name == 'vendors_list' %}active{% endif %}">
+                        <a href="/mvpadmin/labels"><i class="fa fa-fw fa-bar-chart-o"></i> Labels List</a>
+                    </li>
+
+                    <!-- <li>
+                        <a href="/mvpadmin/vendors/products"><i class="fa fa-fw fa-bar-chart-o"></i> Vendors Products</a>
+                    </li> -->
+                    {% endif %}
+
+                    {% if account_type.admin == True %}
+                    <!-- <li class="{% if page_name == 'My Products' %}active{% endif %}">
+                        <a href="/mvpadmin/products"><i class="fa fa-fw fa-table"></i> Products</a>
+                    </li> -->
+                    {% else %}
+                    <li class="{% if page_name == 'My Products' %}active{% endif %}">
+                        <a href="/products"><i class="fa fa-fw fa-table"></i> Products</a>
+                    </li>
+                    {% endif %}
+
+                    <li class="{% if page_name == 'add_product' %}active{% endif %}">
+                        {% if account_type.admin == True %}
+                            <!-- <a href="/mvpadmin/products/add"><i class="fa fa-fw fa-edit"></i> Add Product</a> -->
+                        {% else %}
+                            <a href="/products/add"><i class="fa fa-fw fa-edit"></i> Add Product</a>
+                        {% endif %}
+                    </li>
+                    
+                    <li class="{% if page_name == 'merchants_list' %}active{% endif %}">
+                        <a href="/mvpadmin/merchants"><i class="fa fa-fw fa-bar-chart-o"></i> Merchants List</a>
+                    </li>
+
+                    <li class="{% if page_name == 'Orders' %}active{% endif %}">
+                        {% if account_type.admin == True %}
+                            <!-- <a href="/mvpadmin/orders"><i class="fa fa-fw fa-bar-chart-o"></i> My Orders</a> -->
+                        {% else %}
+                            <a href="/orders"><i class="fa fa-fw fa-bar-chart-o"></i> My Orders</a>
+                        {% endif %}
+                    </li>
+
+                    {% if account_type.admin == True %}
+                    <li class="{% if page_name == 'labels_orders' or page_name == 'Label Orders' %}active{% endif %}">
+                        <a href="/mvpadmin/labels_orders"><i class="fa fa-fw fa-bar-chart-o"></i> Label's Orders</a>
+                    </li>
+                    {% endif %}
+                  
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->

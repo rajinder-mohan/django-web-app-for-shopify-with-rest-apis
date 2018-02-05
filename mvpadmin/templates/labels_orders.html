@@ -1,0 +1,62 @@
+{% extends 'mvpadmin_layout.html' %}
+
+{% load staticfiles %}
+
+{% block title_block %}
+<title>Labels Orders</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+	{% if users_list %}
+    <table class="vendor_page" border="1">
+  		<thead>
+        	<th>Label</th>
+   	 		<th>Total Orders</th>
+   	 		<th>Total Amount</th>
+      	</thead>
+
+      	<tbody>
+
+      		{% for user in users_list %}
+	        	<tr data-attr="{{user.user_id}}">
+	          		<td><a href="/mvpadmin/label_order?label={{user.label}}">{{user.label}}</a></td>
+	          		<td>{{user.orders_count}}</td>
+	          		<td>€{{user.total_amount}}</td>
+	        	</tr>
+      		{% endfor %}
+ 	 	</tbody>
+    </table>
+
+    {% else %}
+    <h3>No Orders.</h3>
+    {% endif %}
+</div>
+
+<div style="text-align: center;">
+  	{% if users_list.has_other_pages %}
+      	<ul class="pagination  hidden-x">
+	        {% if users_list.has_previous %}
+	          <li><a href="?page={{ users_list.previous_page_number }}">&laquo;</a></li>
+	        {% else %}
+	          <li class="disabled"><span>&laquo;</span></li>
+	        {% endif %}
+	        {% for i in users_list.paginator.page_range %}
+	          {% if users_list.number == i %}
+	            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+	          {% else %}
+	            <li><a href="?page={{ i }}">{{ i }}</a></li>
+	          {% endif %}
+	        {% endfor %}
+	        {% if users_list.has_next %}
+	          <li><a href="?page={{ products_list.next_page_number }}">&raquo;</a></li>
+	        {% else %}
+	          <li class="disabled"><span>&raquo;</span></li>
+	        {% endif %}
+    	</ul>
+  	{% endif %} 
+</div>
+
+
+{% endblock %}

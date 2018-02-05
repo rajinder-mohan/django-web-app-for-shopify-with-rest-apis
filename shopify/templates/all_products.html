@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% load staticfiles %}
+
+{% block title_block %}
+<title>All Products</title>
+{% endblock %}
+
+{% block content %}
+
+<div class="container">
+
+    {% for vendor in vendors_list %}
+        <div class="well well-sm">
+            <strong>{{vendor.vendor}}</strong>
+        </div>
+        <div id="products" class="row list-group">
+
+            {% for product in vendor.products_list %}
+                <div class="item  col-xs-4 col-lg-4">
+                    <div class="thumbnail">
+                        <img class="group list-group-image" src="http://placehold.it/400x250/000/fff" alt="" />
+                        <div class="caption">
+                            <h4 class="group inner list-group-item-heading">
+                                {{product.title}}</h4>
+                            <p class="group inner list-group-item-text">{{product.description}}</p>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p>MSRP :  ${{product.selling_price}}</p>
+                                    <p>Wholesale Price :  ${{product.wholesale_price}}</p>
+                                    <p>SKU :  ${{product.sku}}</p>
+                                </div>
+           
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+
+            {% if not vendor.products_list %}
+            <div>
+                <h3>You don't have any products.</h3>
+            </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+{% endblock %}

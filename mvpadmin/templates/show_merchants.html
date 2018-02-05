@@ -1,0 +1,149 @@
+{% extends 'mvpadmin_layout.html' %}
+
+{% load staticfiles %}
+
+{% block title_block %}
+   <title>Merchants</title>   
+{% endblock %}
+
+{% block css_block %}  
+   <link rel="stylesheet" href="{%static 'css/jquery.toast.css' %}">
+{% endblock %}
+
+
+{% block content %}
+<div class="container">
+	<table class="vendor_page" border="1">
+  		<thead>
+        	<th>Merchant Name</th>
+        	<th>Domain</th>
+        	<th>Allow Access</th>
+      	</thead>
+      	<tbody>
+
+      	
+      		{% for account in merchants_accounts %}
+      		<tr data-attr="{{account.id}}">
+      			<td>{{account.username}}</td>
+      			<td>{{account.main_domain}}</td>
+      			<td>
+		            <input type="radio" class="enable-user" name="enable_user_{{account.id}}" {% if account.id not in deniedusers %} checked {% endif %} id="userenable_{{account.id}}" value="enable">
+		            <label for="userenable_{{account.id}}">Yes</label>
+		          
+		          <input type="radio" class="disable-user" id="userdisable_{{account.id}}" name="enable_user_{{account.id}}" {% if account.id in deniedusers %} checked {% endif %} value="disable">
+		          <label for="userdisable_{{account.id}}">No</label>
+          		</td>
+      		</tr>
+      		{% endfor %}
+  		</tbody>
+	</table>
+</div>
+
+  <div style="text-align: center;">
+    {% if merchants_accounts.has_other_pages %}
+      <ul class="pagination  hidden-x">
+        {% if merchants_accounts.has_previous %}
+          <li><a href="?page={{ merchants_accounts.previous_page_number }}">&laquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&laquo;</span></li>
+        {% endif %}
+        {% for i in merchants_accounts.paginator.page_range %}
+          {% if merchants_accounts.number == i %}
+            <li class="active"><span>{{ i }} <span class="sr-only">(current)</span></span></li>
+          {% else %}
+            <li><a href="?page={{ i }}">{{ i }}</a></li>
+          {% endif %}
+        {% endfor %}
+        {% if merchants_accounts.has_next %}
+          <li><a href="?page={{ products_list.next_page_number }}">&raquo;</a></li>
+        {% else %}
+          <li class="disabled"><span>&raquo;</span></li>
+        {% endif %}
+    </ul>
+  {% endif %}   
+  </div>
+
+{% endblock %}
+
+{% block js %}
+
+<script type="text/javascript" src="{% static 'js/jquery.toast.js' %}"></script>
+
+<script type="text/javascript">
+
+  var token = "{{csrf_token}}";
+
+   function toastNotificaitons(heading,text)
+       {
+        $.toast({
+        heading: "<span class='heading'>"+heading+"</span>",
+        text: text,
+        showHideTransition: 'slide',
+        icon: 'success',
+        position: 'top-right',
+        hideAfter: 2000,
+        //hideAfter: 5000,  
+        stack: 100
+        });
+
+       }
+
+  $('.disable-user').click(function(event){
+    
+      $(this).parent().find(".enable-user").prop('checked', false);
+      var merchant_id = $(this).parent().parent().attr('data-attr');
+
+      $.ajax({
+          type: 'POST',
+          url: '/mvpadmin/denyaccess',
+          data: {'merchant_id': merchant_id, 'status': 'yes', 'csrfmiddlewaretoken': token},
+          success: function(response){
+
+            var res = JSON.parse(response);
+
+            if (res.success){
+               toastNotificaitons("Access Denied", "Merchant is not allowed to access your products.");   
+            }
+            
+            if (res.error){
+              toastNotificaitons("Error", res.error);   
+            }
+
+            if (res.already_updated){
+              toastNotificaitons("Already Denied Access", "Merchant is not allowed to access your products.");
+            }
+           
+          }
+      });
+  });
+
+  $('.enable-user').click(function(event){
+    
+    $(this).parent().find(".disable-user").prop('checked', false);
+
+    var merchant_id = $(this).parent().parent().attr('data-attr');
+
+    $.ajax({
+          type: 'POST',
+          url: '/mvpadmin/denyaccess',
+          data: {'merchant_id': merchant_id, 'status': "no", 'csrfmiddlewaretoken': token},
+          success: function(response){
+            
+            var res = JSON.parse(response);
+
+            if (res.success){
+                toastNotificaitons("Access Provided", "Merchant has access to your products.");
+            }
+            
+            if (res.error){
+              toastNotificaitons("Error", res.error);   
+            }
+
+            if (res.already_updated){
+              toastNotificaitons("Already Provided Access", "Merchant has already access to your products.");
+            }
+          }
+      });
+  });  
+</script>
+{% endblock %}

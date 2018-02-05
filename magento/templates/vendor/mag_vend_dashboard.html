@@ -1,0 +1,348 @@
+{% extends "vendor/mag_vend_base.html" %}
+{% load staticfiles %}
+{% load exists %}
+{% block title %}
+Dashboard
+{% endblock %}
+{% block css %}
+<link  href="http://cdnjs.cloudflare.com/ajax/libs/fotorama/4.6.4/fotorama.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/dashboard.css' %}">
+{% endblock %}
+{% block content %}
+
+<div class="container">
+
+<div id="tabs" class="clearfix">
+  <ul class="tabs clearfix" data-tabgroup="first-tab-group">
+    <li><a id="1" class="active" href="#home-tab">Home</a></li>
+    <li><a id="2" href="#merchant-tab">Merchants List</a></li>
+    <li><a id="3" href="#order-tab">Orders</a></li>
+    <li class="pull-right"><a href="#setting-tab">Settings</a></li>
+  </ul>
+    <div id="first-tab-group" class="tabgroup">
+    <div id="home-tab">
+      <div class="product-list-section clearfix">
+        <ul class="prodlist-ul">
+          {% for product in products %}
+            {% exists product.entity_id vendor_id as mvpproduct %}
+            {% if mvpproduct %}
+
+            <li class="product-added">
+              <form method="POST" action="{% url 'mag_ven_remove_product' %}">
+              {% csrf_token %}
+              <div class="product-list-div">
+                <div class="product-img-wrap">
+                  {% if product.imgurl %}
+                  <img src="{{ product.imgurl }}">
+                  {% else %}
+                  <img src="{% static 'images/img12.jpg' %}">
+                  {% endif %}
+                  <div class="add-cart-btn">
+                    <button type="submit">Remove Fashion Circle</button>
+
+                  </div>
+                </div>
+                <div class="product-content-wrap">
+                  <span class="product-title">{{ product.name }}</span>
+                  <span class="product-price">{{ product.price }}</span>
+                  <h3 class="discount-head">Discounts</h3>
+                  <div class="dropshipping-wrap">
+                    <div class="dropshipping-checkbox">
+                      <input type="checkbox" class="checkbox-input" name="">Dropshipping
+                    </div>
+                    <div class="dropshipping-box">
+                      <div class="dropShip drop-col">
+                        <input type="hidden" id="t_price" value="{{ product.price }}">
+                        <input type="text" value="{{ mvpproduct.dropshipping_percentage }}" name="dropshiping_per" id="dropshiping_per" class="dropship_percentage" disabled="true" readonly>
+                        <span class="percent">%</span>
+                      </div>
+                      <div class="equalTo drop-col">=</div>
+                      <div class="dropShip drop-col">
+                        <span id="dropshipping_price_0{{ forloop.counter }}" class="dropshipping_price_0">{{ mvpproduct.dropshipping_price }}</span>
+                        <span class="euro">€</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="dropshipping-wrap">
+                    <div class="dropshipping-checkbox">
+                      <input type="checkbox" class="wholesale-input" name="">Wholesale
+                    </div>
+                    <div class="dropshipping-box">
+                      <div class="dropShip drop-col">
+                        <input type="number" name="wholesale_per" class="dropship_percentage" value="{{ mvpproduct.wholesale_percentage }}" disabled="true" readonly>
+                        <span class="percent">%</span>
+                      </div>
+                      <div class="equalTo drop-col">=</div>
+                      <div class="dropShip drop-col">
+                        <span id="wholesale_price_0{{ forloop.counter }}" class="dropshipping_price_0">{{ mvpproduct.wholesale_price }}</span>
+                        <span class="euro">€</span>
+                      </div>
+                    </div>
+                  </div>
+                  <h3 class="returns-head">Returns</h3>
+                  <div class="returnBack">
+                    <input type="checkbox" name="" disabled="true" readonly> to label
+                    <input type="checkbox" name="" disabled="true" readonly> to retailer
+                  </div>
+                  <div class="available-qty"> Quantity: <span>{{ product.qty }}</span></div>
+                </div>
+              </div>
+
+              <input type="hidden" name="product_id" value="{{ mvpproduct.id }}">
+            </form>
+          </li>
+            {% else %}
+            <li>
+            <form method="POST" action="{% url 'mag_ven_add_product' %}">
+            {% csrf_token %}
+            <div class="product-list-div">
+              <div class="product-img-wrap">
+                {% if product.imgurl %}
+                <img src="{{ product.imgurl }}">
+                {% else %}
+                <img src="{% static 'images/img12.jpg' %}">
+                {% endif %}
+                <div class="add-cart-btn">
+                <button type="submit">Add to Fashion Circle</button>
+
+                </div>
+              </div>
+              <div class="product-content-wrap">
+                <span class="product-title">{{ product.name }}</span>
+                <span class="product-price">{{ product.price }}</span>
+                <h3 class="discount-head">Discounts</h3>
+                <div class="dropshipping-wrap">
+                  <div class="dropshipping-checkbox">
+                    <input type="checkbox" class="checkbox-input" name="">Dropshipping
+                  </div>
+                  <div class="dropshipping-box">
+                    <div class="dropShip drop-col">
+                      <input type="hidden" id="t_price" value="{{ product.price }}">
+                      <input type="text" value="0" name="dropship_price_percent" id="dropshiping_per" onkeyup="calDropPrice({{ forloop.counter }},this)" class="dropship_percentage" >
+                      <span class="percent">%</span>
+                    </div>
+                    <div class="equalTo drop-col">=</div>
+                    <div class="dropShip drop-col">
+                      <span id="dropshipping_price_0{{ forloop.counter }}" class="dropshipping_price_0">{{ product.price }}</span>
+                      <span class="euro">€</span>
+                    </div>
+                  </div>
+                </div>
+                <div class="dropshipping-wrap">
+                  <div class="dropshipping-checkbox">
+                    <input type="checkbox" class="wholesale-input" name="">Wholesale
+                  </div>
+                  <div class="dropshipping-box">
+                    <div class="dropShip drop-col">
+                      <input type="number" name="wholesale_price_percent" class="dropship_percentage" value="0" onkeyup="wholeSalePrice({{ forloop.counter }},this)">
+                      <span class="percent">%</span>
+                    </div>
+                    <div class="equalTo drop-col">=</div>
+                    <div class="dropShip drop-col">
+                      <span id="wholesale_price_0{{ forloop.counter }}" class="dropshipping_price_0">{{ product.price }}</span>
+                      <span class="euro">€</span>
+                    </div>
+                  </div>
+                </div>
+                <h3 class="returns-head">Returns</h3>
+                <div class="returnBack">
+                  <input type="checkbox" name=""> to label
+                  <input type="checkbox" name=""> to retailer
+                </div>
+                <div class="available-qty"> Quantity: <span>{{ product.qty }}</span></div>
+              </div>
+            </div>
+
+            <input type="hidden" name="product_id" value="{{ product.entity_id }}">
+            <input type="hidden" name="dropshipping_price" id="drop_price{{ forloop.counter }}" value="{{ product.price }}"/>
+            <input type="hidden" name="wholesale_price" id="wholesale_price{{ forloop.counter }}" value="{{ product.price }}"/>
+            <input type="hidden" name="sku" value="{{ product.sku }}">
+            <input type="hidden" name="platform" value="Magento">
+            <input type="hidden" name="weight" value="{{ product.weight }}">
+            <input type="hidden" name="description" value="{{ product.description }}">
+            <input type="hidden" name="title" value="{{ product.name }}">
+            <input type="hidden" name="quantity" value="{{ product.qty }}">
+            <input type="hidden" name="selling_price" value="{{ product.price }}">
+            <input type="hidden" name="image" value="{{ images }}">
+            <input type="hidden" name="category" value="Clothing">
+
+          </form>
+        </li>
+            {% endif %}
+
+        {% endfor %}
+        </ul>
+      </div>
+      {% if products.has_other_pages %}
+      <div class="pagination">
+        <ul class="pagination-list">
+          {% if products.has_previous %}
+              <li><span class="left-arrow"><a href="?page={{ products.previous_page_number }}&tabv=1"><img src="{% static 'images/left-arrow.png' %}"></a></span></li>
+          {% else %}
+             <li class="disabled"><span class="left-arrow"><img src="{% static 'images/left-arrow.png' %}"></span></li>
+          {% endif %}
+          {% for i in products.paginator.page_range %}
+             {% if products.number == i %}
+               <li class="active"><a href="#">{{ i }}</a></li>
+             {% else %}
+               <li><a href="?page={{ i }}&tabv=1">{{ i }}</a></li>
+             {% endif %}
+          {% endfor %}
+          {% if products.has_next %}
+             <li><span class="left-arrow"><a href="?page={{ products.next_page_number }}&tabv=1"><img src="{% static 'images/right-arrow.png' %}"></a></span></li>
+          {% else %}
+             <li  class="disabled"><span class="left-arrow"><img src="{% static 'images/right-arrow.png' %}"></span></li>
+        {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    <div id="merchant-tab" class="merchant-tab">
+      <div class="order-wrap-row">
+        <div class="vendor-table">
+          <div class="order-head">
+            <div class="order-vendor-row">
+              <span class="col col-1">Merchant Name</span>
+              <span class="col col-2">Merchant Domain</span>
+              <span class="col col-3">Allow Access</span>
+            </div>
+          </div>
+          <div class="order-body">
+            {% for merchant in merchants %}
+            <div class="order-vendor-row">
+              <span class="col col-1">{{ merchant.username }}</span>
+              <span class="col col-2">{{ merchant.shop_domain }}</span>
+              <span class="col col-3">
+                <div class="radio-checkbox-wrap">
+                  <input type="hidden" value="{{ vendor_id }}" id="v_id{{ forloop.counter }}">
+                  <input type="hidden" value="{{ merchant.id }}" id="m_id{{ forloop.counter }}">
+                  {% if merchant.id|controlMerchant:vendor_id %}
+                    <input type="checkbox" class="merchant_access-input" name="merchant_access" onchange="changeAccess(this,{{ forloop.counter }})">
+                  {% else %}
+                    <input type="checkbox" class="merchant_access-input" name="merchant_access" checked onchange="changeAccess(this,{{ forloop.counter }})">
+                  {% endif %}
+                  <label class="merchant_radio-label"></label>
+                </div>
+              </span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% if merchants.has_other_pages %}
+      <div class="pagination">
+        <ul class="pagination-list">
+          {% if merchants.has_previous %}
+              <li><span class="left-arrow"><a href="?page={{ merchants.previous_page_number }}&tabv=3"><img src="{% static 'images/left-arrow.png' %}"></a></span></li>
+          {% else %}
+             <li class="disabled"><span class="left-arrow"><img src="{% static 'images/left-arrow.png' %}"></span></li>
+          {% endif %}
+          {% for i in merchants.paginator.page_range %}
+             {% if merchants.number == i %}
+               <li class="active"><a href="#">{{ i }}</a></li>
+             {% else %}
+               <li><a href="?page={{ i }}&tabv=3">{{ i }}</a></li>
+             {% endif %}
+          {% endfor %}
+          {% if merchants.has_next %}
+             <li><span class="left-arrow"><a href="?page={{ merchants.next_page_number }}&tabv=3"><img src="{% static 'images/right-arrow.png' %}"></a></span></li>
+          {% else %}
+             <li  class="disabled"><span class="left-arrow"><img src="{% static 'images/right-arrow.png' %}"></span></li>
+        {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    <div id="order-tab" class="order-tab">
+      <div class="order-wrap-row">
+        <h3 class="vendor-title">Paid Orders</h3>
+        <div class="vendor-table">
+          <div class="order-head">
+            <div class="order-vendor-row">
+              <span class="col col-1">Paid Date</span>
+              <span class="col col-2">Merchant Name</span>
+              <span class="col col-3">Merchant Domain</span>
+              <span class="col col-4">Order ID</span>
+              <span class="col col-5">Amount</span>
+              <span class="col col-6">Amount</span>
+              <span class="col col-7">Fulfillment</span>
+            </div>
+          </div>
+          <div class="order-body">
+            {% for order in final_orders %}
+            <div class="order-vendor-row">
+              <span class="col col-1">{{ order.order_date }}</span>
+              <span class="col col-2">{{ order.merchant_name }}</span>
+              <span class="col col-3">{{ order.merchant_domain }}</span>
+              <span class="col col-4">{{ order.OrderId }}</span>
+              <span class="col col-5">€{{ order.total_amount }}</span>
+              <span class="col col-6"><a class="paid-btn" href="javascript:void();">{% if order.financial_status != "pending" %}Paid{% else %}Unpaid{% endif %}</a></span>
+              <span class="col col-7">
+                {% if order.fulfillment_status == "fulfilled" %}
+                  <span class="col col-7"><a class="paid-btn" href="javascript:void();">Fulfilled</a></span>
+                {% endif %}
+              </span>
+            </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+      {% if final_orders.has_other_pages %}
+      <div class="pagination">
+        <ul class="pagination-list">
+          {% if final_orders.has_previous %}
+              <li><span class="left-arrow"><a href="?page={{ final_orders.previous_page_number }}&tabv=2"><img src="{% static 'images/left-arrow.png' %}"></a></span></li>
+          {% else %}
+             <li class="disabled"><span class="left-arrow"><img src="{% static 'images/left-arrow.png' %}"></span></li>
+          {% endif %}
+          {% for i in final_orders.paginator.page_range %}
+             {% if final_orders.number == i %}
+               <li class="active"><a href="#">{{ i }}</a></li>
+             {% else %}
+               <li><a href="?page={{ i }}&tabv=2">{{ i }}</a></li>
+             {% endif %}
+          {% endfor %}
+          {% if final_orders.has_next %}
+             <li><span class="left-arrow"><a href="?page={{ final_orders.next_page_number }}&tabv=2"><img src="{% static 'images/right-arrow.png' %}"></a></span></li>
+          {% else %}
+             <li  class="disabled"><span class="left-arrow"><img src="{% static 'images/right-arrow.png' %}"></span></li>
+        {% endif %}
+        </ul>
+      </div>
+      {% endif %}
+    </div>
+    <div id="setting-tab" class="setting-tab">
+      <div class="setting-wrap-row">
+        <h3 class="paypal-title">Your PayPal email to receive payments:</h3>
+        <div class="paypal-save-wrap">
+          <input type="text" class="save-input" name="" id="new_paypal_mail">
+          <a class="save-btn" href="javascript:updatePaypal();">Save</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+</div>
+{% endblock %}
+{% block script %}
+<script type="text/javascript">
+var allowmerchantaccess = "{% url 'allowmerchants' %}";
+var token="{{ csrf_token }}";
+$('.tabgroup > div').hide();
+$('.tabgroup > div:first-of-type').show();
+$('.tabs a').click(function(e){
+  e.preventDefault();
+    var $this = $(this),
+        tabgroup = '#'+$this.parents('.tabs').data('tabgroup'),
+        others = $this.closest('li').siblings().children('a'),
+        target = $this.attr('href');
+    others.removeClass('active');
+    $this.addClass('active');
+    $(tabgroup).children('div').hide();
+    $(target).show();
+
+})
+</script>
+{% endblock %}

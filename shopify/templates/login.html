@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>Sign in</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+  {% load static %}
+
+  <link rel="stylesheet" href="{% static 'css/bootstrap.min.css' %}">
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+
+  </head>
+<body>
+
+<!-- <div class="messages-circle">
+  <div class="back_screen">
+    <a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+      {% for message in messages %}
+    <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+  </div>
+</div>
+ -->
+
+<div class="container">
+      <div class="row">
+
+    <div class="messages">
+        <div class="back_screen">
+      <a onclick="close_popup()" href="javascript:void(0);" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+          {% for message in messages %}
+          <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+          {% endfor %}
+          </div>
+          </div>
+
+        <div class="col-sm-6 col-md-4 col-md-offset-4">
+            <h1 class="text-center login-title sign_title">Sign in to Fashion Circle</h1>
+            <div class="account-wall">
+              <div class="logo-image">
+                <img src="{% static '/images/Logo_Fashioncircle.png' %}" alt="FasionCircle Logo">
+              </div>
+                
+                <form class="form-signin" method="POST" action="/" id="signin_form">
+                {% csrf_token %}
+
+        
+                <label for="emailid">Email</label>
+                <input type="text" class="form-control" placeholder="Email" name="emailid" id="emailid" autofocus value="{{posted_data.emailid}}">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" name="password" id="passInput" placeholder="Password" value="{{posted_data.password}}">
+               {{form.as_p}}
+                <button class="btn btn-lg btn-primary btn-block" type="submit">
+                    Sign in</button>
+                
+                </form>
+            </div>
+            <a href="/forgot_password" class="forgot_pass">Forgot Password</a>
+            <a href="/apply" class="text-center new-account">Apply for account </a>
+        </div>
+    </div>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script src="{% static 'js/jquery.validate.min.js' %}"></script>
+<script type="text/javascript">
+  
+  $("#signin_form").validate({
+       rules: {
+        emailid: {
+          required: true,
+          email: true
+        },
+        vendor: "required",
+        password: {
+          required: true,
+        }
+       },
+       submitHandler: function(form){
+        form.submit();
+       }
+    });
+
+  function close_popup(){
+    $('.alert-success').attr("style", "display: none;");
+  }
+</script>
+
+
+</body>
+</html>
+

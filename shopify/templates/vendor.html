@@ -1,0 +1,8 @@
+ <h2>Vendors</h2>
+    <ul>
+        {% for vendor in object_list %}
+        <br>
+            <li>{{ vendor.user_id }}</li>
+            <li>{{ vendor.vendor }}</li>
+        {% endfor %}
+    </ul>

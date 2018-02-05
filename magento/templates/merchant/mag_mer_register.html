@@ -1,0 +1,66 @@
+{% extends "merchant/mag_mer_base.html" %}
+{% load staticfiles %}
+{% block title %}
+Magento Register
+{% endblock %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <h1 class="text-center login-title">Apply for Fashion Circle  Merchant Membership </h1>
+          <div class="account-wall">
+              <!-- <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                  alt=""> -->
+                  <div class="logo-image">
+                  <img src="{% static '/images/Logo_Fashioncircle.png' %}" alt="FasionCircle Logo">
+                  </div>
+                  <h5 class="success" style="display:none">THANKS. YOUR ACCOUNT REGISTERED SUCCESSFULLY, WE WILL NOTIFY YOU ONCE ADMIN APPROVES YOUR REQUEST</h5>
+              <form class="form-signin inline" method="POST" action="{% url 'mag_mer_register' %}" id="signmagento">
+              {% csrf_token %}
+
+
+                     <div class="form-group email">
+                          <label for="email">Email</label>
+                          <input type="text" class="form-control email" placeholder="Email"  name="email" id="email" >
+                          <h5 class="show_email_error" style="display:none"> EMAIL ALREADY EXISTS </h5>
+                    </div>
+
+                     <div class="form-group">
+                    <label for="platform">Platform</label>
+                    <input type="text" class="form-control" readonly  name="platform" id="platform" value="Magento"></div>
+
+
+                    <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" class="form-control name" placeholder="Name"  name="name" id="name"></div>
+
+                    <div class="form-group">
+                    <label for="mag_domain">Magento Domain</label>
+                    <input class="form-control mag_domain" name="mag_domain" type="text"  placeholder="Magento Domain" id="mag_domain"></div>
+                    <h5 class="show_web_error" style="display:none"> DOMAIN ALREADY EXISTS</h5>
+
+                    <div class="form-group" style="display:none;">
+                    <label for="main_domain">Main Domain</label>
+                    <input class="form-control main_domain" name="main_domain" id="main_domain" type="url"  placeholder="Main Domain" ></div>
+                    <div class="form-group">
+                    <label for="shop_key">Shop Key</label>
+                    <input class="form-control" name="shop_key" type="text"  placeholder="Shope Key" id="shop_key"></div>
+                    <div class="form-group">
+                    <label for="shop_secret">Shop Secret</label>
+                    <input class="form-control" name="shop_secret" type="text"  placeholder="Shope Secret" id="shop_secret"></div>
+                    <input type="hidden" name="merchant_token" id="merchant_token" value="{{ merchant_token }}"/>
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                        Apply Now</button>
+
+                        <span id="terms-and-conditions">By clicking the “Apply now” button, you are agreeing to the Fashion Circle <a href="https://www.fashioncircle.de/terms-and-conditions/">Terms and Conditions</a>.</span>
+
+              </form>
+          </div>
+          <a href="{% url 'mag_mer_login' %}" class="text-center new-account">Sign in </a>
+      </div>
+  </div>
+</div>
+{% endblock %}

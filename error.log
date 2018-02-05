@@ -1,0 +1,210 @@
+[Fri Dec 15 09:58:32.986568 2017] [wsgi:error] [pid 11556] /var/www/html/mvp/mvpenv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1430: RuntimeWarning: DateTimeField AccountDetail.token_time received a naive datetime (2017-12-15 09:58:32.985297) while time zone support is active.
+[Fri Dec 15 09:58:32.986607 2017] [wsgi:error] [pid 11556]   RuntimeWarning)
+[Fri Dec 15 09:58:33.174030 2017] [wsgi:error] [pid 11556] {'is_enabled': False, 'Success': 'Saved Successfully', 'access_token': 'fe8f9f96e830f6a3daf8dad185959d8aa057bec9'}
+[Fri Dec 15 10:02:35.775790 2017] [wsgi:error] [pid 11556] 'merchant_token'
+[Fri Dec 15 10:02:35.775832 2017] [wsgi:error] [pid 11556] Exception in merchant decorator
+[Fri Dec 15 10:03:12.684845 2017] [wsgi:error] [pid 11556] 'merchant_token'
+[Fri Dec 15 10:03:12.684901 2017] [wsgi:error] [pid 11556] Exception in merchant decorator
+[Fri Dec 15 10:04:31.171992 2017] [wsgi:error] [pid 11556] 'merchant_token'
+[Fri Dec 15 10:04:31.172034 2017] [wsgi:error] [pid 11556] Exception in merchant decorator
+[Fri Dec 15 10:05:32.046594 2017] [wsgi:error] [pid 11556] Not Found: /robots.txt
+[Fri Dec 15 10:06:13.225297 2017] [wsgi:error] [pid 11556] /var/www/html/mvp/mvpenv/lib/python3.5/site-packages/django/db/models/fields/__init__.py:1430: RuntimeWarning: DateTimeField AccountDetail.token_time received a naive datetime (2017-12-15 10:06:13.224716) while time zone support is active.
+[Fri Dec 15 10:06:13.225336 2017] [wsgi:error] [pid 11556]   RuntimeWarning)
+[Fri Dec 15 10:06:13.413959 2017] [wsgi:error] [pid 11556] {'is_enabled': False, 'Success': 'Saved Successfully', 'access_token': 'c53a7d9c86863965387472da32b230ce59bb440a'}
+[Fri Dec 15 13:03:08.179936 2017] [wsgi:error] [pid 11556] Not Found: /robots.txt
+[Fri Dec 15 13:03:09.047021 2017] [wsgi:error] [pid 11556] Not Found: /robots.txt
+[Fri Dec 15 14:15:49.926304 2017] [wsgi:error] [pid 11556] Not Found: /robots.txt
+[Fri Dec 15 21:19:35.515608 2017] [wsgi:error] [pid 11556] Not Found: /robots.txt
+[Fri Dec 15 22:41:03.225960 2017] [wsgi:error] [pid 11556] Not Found: /robots.txt
+[Fri Dec 15 22:41:03.335582 2017] [wsgi:error] [pid 11556] Not Found: /.well-known/assetlinks.json
+[Sat Dec 16 08:57:22.678671 2017] [wsgi:error] [pid 6969] Not Found: /robots.txt
+[Sat Dec 16 13:04:23.091510 2017] [wsgi:error] [pid 6969] Not Found: /robots.txt
+[Sun Dec 17 00:10:32.976834 2017] [wsgi:error] [pid 6969] Not Found: /admin/config.php
+[Sun Dec 17 04:29:38.717900 2017] [wsgi:error] [pid 6969] Not Found: /robots.txt
+[Sun Dec 17 06:42:10.778979 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Sun Dec 17 11:59:34.142103 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Sun Dec 17 12:18:17.575378 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Sun Dec 17 19:46:11.078467 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Sun Dec 17 19:46:12.093949 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Sun Dec 17 21:57:35.343366 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Mon Dec 18 00:15:37.199342 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Mon Dec 18 03:50:41.986107 2017] [wsgi:error] [pid 22359] Not Found: /robots.txt
+[Mon Dec 18 11:45:54.227194 2017] [wsgi:error] [pid 19469] Not Found: /robots.txt
+[Mon Dec 18 15:09:35.449080 2017] [wsgi:error] [pid 19469] Not Found: /robots.txt
+[Mon Dec 18 18:56:20.879015 2017] [wsgi:error] [pid 19469] Not Found: /robots.txt
+[Mon Dec 18 20:33:53.125912 2017] [wsgi:error] [pid 19469] Not Found: /robots.txt
+[Mon Dec 18 22:25:03.948202 2017] [wsgi:error] [pid 19469] Not Found: /robots.txt
+[Mon Dec 18 22:25:04.867955 2017] [wsgi:error] [pid 19469] Not Found: /robots.txt
+[Tue Dec 19 11:28:55.047605 2017] [wsgi:error] [pid 11614] Not Found: /robots.txt
+[Tue Dec 19 12:02:15.572518 2017] [wsgi:error] [pid 11614] Not Found: /robots.txt
+[Tue Dec 19 23:41:52.930470 2017] [ssl:error] [pid 19084] [client 139.162.151.127:54862] AH02042: rejecting client initiated renegotiation
+[Wed Dec 20 01:03:27.380500 2017] [wsgi:error] [pid 11614] Not Found: /session.html
+[Wed Dec 20 05:22:56.330930 2017] [wsgi:error] [pid 11614] Not Found: /robots.txt
+[Wed Dec 20 05:22:56.446085 2017] [wsgi:error] [pid 11614] Not Found: /.well-known/apple-app-site-association
+[Wed Dec 20 05:58:45.741807 2017] [wsgi:error] [pid 11614] Not Found: /apple-app-site-association
+[Wed Dec 20 09:00:46.674804 2017] [wsgi:error] [pid 8052] Not Found: /.well-known/assetlinks.json
+[Wed Dec 20 09:56:12.945370 2017] [wsgi:error] [pid 8052] Not Found: /Verify.php
+[Wed Dec 20 10:11:52.580204 2017] [wsgi:error] [pid 8052] Not Found: /robots.txt
+[Wed Dec 20 11:32:56.223623 2017] [wsgi:error] [pid 8052] Not Found: /robots.txt
+[Wed Dec 20 11:32:56.332592 2017] [wsgi:error] [pid 8052] Not Found: /apple-app-site-association
+[Wed Dec 20 11:32:57.036349 2017] [wsgi:error] [pid 8052] Not Found: /apple-app-site-association
+[Wed Dec 20 12:13:07.928676 2017] [wsgi:error] [pid 8052] Not Found: /.well-known/assetlinks.json
+[Wed Dec 20 13:49:36.803750 2017] [wsgi:error] [pid 8052] Not Found: /.well-known/apple-app-site-association
+[Wed Dec 20 14:48:07.206229 2017] [wsgi:error] [pid 8052] Not Found: /robots.txt
+[Wed Dec 20 14:48:28.182109 2017] [wsgi:error] [pid 8052] Not Found: /admin/config.php
+[Wed Dec 20 14:50:37.327672 2017] [wsgi:error] [pid 8052] Not Found: /robots.txt
+[Wed Dec 20 14:50:37.739535 2017] [wsgi:error] [pid 8052] Not Found: /.well-known/apple-app-site-association
+[Wed Dec 20 17:49:22.805484 2017] [wsgi:error] [pid 8052] Not Found: /robots.txt
+[Wed Dec 20 17:52:33.691476 2017] [wsgi:error] [pid 8052] Not Found: /robots.txt
+[Wed Dec 20 20:45:57.384302 2017] [wsgi:error] [pid 8052] Not Found: /apple-app-site-association
+[Wed Dec 20 22:28:54.272057 2017] [wsgi:error] [pid 8052] Not Found: /sdk
+[Wed Dec 20 22:28:58.436030 2017] [wsgi:error] [pid 8052] Not Found: /nmaplowercheck1513808934
+[Wed Dec 20 22:28:59.392745 2017] [wsgi:error] [pid 8052] Not Found: /HNAP1
+[Wed Dec 20 23:29:17.577806 2017] [wsgi:error] [pid 8052] Not Found: /robots.txt
+[Wed Dec 20 23:29:18.170829 2017] [wsgi:error] [pid 8052] Not Found: /apple-app-site-association
+[Thu Dec 21 02:50:38.947121 2017] [wsgi:error] [pid 8052] Not Found: /.well-known/assetlinks.json
+[Thu Dec 21 05:36:39.729156 2017] [wsgi:error] [pid 8052] Not Found: /Login.php
+[Thu Dec 21 07:47:55.274599 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Thu Dec 21 07:47:56.290694 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Thu Dec 21 08:58:07.829093 2017] [wsgi:error] [pid 24934] Not Found: /.well-known/apple-app-site-association
+[Thu Dec 21 10:59:51.887978 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Thu Dec 21 10:59:52.482218 2017] [wsgi:error] [pid 24934] Not Found: /.well-known/apple-app-site-association
+[Thu Dec 21 11:35:29.076065 2017] [wsgi:error] [pid 24934] Not Found: /apple-app-site-association
+[Thu Dec 21 13:08:11.503001 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Thu Dec 21 22:43:18.978786 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Thu Dec 21 22:50:53.909601 2017] [wsgi:error] [pid 24934] Not Found: /admin/config.php
+[Thu Dec 21 22:52:41.166040 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Thu Dec 21 23:14:28.014155 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Thu Dec 21 23:14:28.440532 2017] [wsgi:error] [pid 24934] Not Found: /.well-known/assetlinks.json
+[Fri Dec 22 00:36:08.174365 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Fri Dec 22 00:36:08.585005 2017] [wsgi:error] [pid 24934] Not Found: /.well-known/apple-app-site-association
+[Fri Dec 22 01:32:39.428793 2017] [wsgi:error] [pid 24934] Not Found: /apple-app-site-association
+[Fri Dec 22 02:23:04.056864 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Fri Dec 22 02:43:49.336303 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Fri Dec 22 03:35:08.298720 2017] [wsgi:error] [pid 24934] Not Found: /.well-known/assetlinks.json
+[Fri Dec 22 05:52:16.631866 2017] [wsgi:error] [pid 24934] Not Found: /robots.txt
+[Fri Dec 22 08:29:00.868865 2017] [wsgi:error] [pid 13818] Not Found: /robots.txt
+[Fri Dec 22 09:08:48.531362 2017] [wsgi:error] [pid 13818] Not Found: /robots.txt
+[Fri Dec 22 11:01:06.942434 2017] [wsgi:error] [pid 13818] Not Found: /index.php
+[Fri Dec 22 11:02:04.618739 2017] [wsgi:error] [pid 13818] Not Found: /Login.php
+[Fri Dec 22 11:02:05.578663 2017] [wsgi:error] [pid 13818] Not Found: /Login.php
+[Fri Dec 22 11:38:31.675269 2017] [wsgi:error] [pid 13818] Not Found: /robots.txt
+[Fri Dec 22 13:52:28.465977 2017] [wsgi:error] [pid 13818] Not Found: /favicon.ico
+[Fri Dec 22 14:34:39.369569 2017] [wsgi:error] [pid 13818] Not Found: /robots.txt
+[Fri Dec 22 14:34:40.422513 2017] [wsgi:error] [pid 13818] Not Found: /favicon.ico
+[Fri Dec 22 14:43:09.425489 2017] [wsgi:error] [pid 13818] Not Found: /downloader/
+[Fri Dec 22 14:55:28.732041 2017] [wsgi:error] [pid 13818] Not Found: /robots.txt
+[Fri Dec 22 22:22:24.321193 2017] [wsgi:error] [pid 13818] Not Found: /robots.txt
+[Sat Dec 23 00:32:24.088419 2017] [wsgi:error] [pid 13818] Not Found: /admin/config.php
+[Sat Dec 23 12:14:30.956938 2017] [wsgi:error] [pid 3047] Not Found: /robots.txt
+[Sat Dec 23 12:40:49.778935 2017] [wsgi:error] [pid 3047] Not Found: /.well-known/
+[Sat Dec 23 12:51:48.141982 2017] [wsgi:error] [pid 3047] Not Found: /robots.txt
+[Sat Dec 23 13:18:44.302589 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 13:18:44.431890 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 13:18:45.354130 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 13:18:45.569396 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 13:19:09.949970 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 13:19:10.066480 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 13:19:10.981821 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 13:19:11.560823 2017] [wsgi:error] [pid 3047] Not Found: /Login.php
+[Sat Dec 23 17:06:40.685344 2017] [wsgi:error] [pid 3047] Not Found: /robots.txt
+[Sat Dec 23 22:20:04.103036 2017] [wsgi:error] [pid 3047] Not Found: /robots.txt
+[Sat Dec 23 22:20:04.959571 2017] [wsgi:error] [pid 3047] Not Found: /robots.txt
+[Sat Dec 23 22:55:41.583924 2017] [wsgi:error] [pid 3047] Not Found: /robots.txt
+[Sun Dec 24 11:44:08.532579 2017] [wsgi:error] [pid 6956] Not Found: /robots.txt
+[Sun Dec 24 14:23:20.857376 2017] [wsgi:error] [pid 6956] Not Found: /robots.txt
+[Sun Dec 24 18:25:56.198444 2017] [wsgi:error] [pid 6956] Not Found: /robots.txt
+[Mon Dec 25 01:48:54.506124 2017] [wsgi:error] [pid 6956] Not Found: /robots.txt
+[Mon Dec 25 02:24:09.520639 2017] [wsgi:error] [pid 6956] Not Found: /robots.txt
+[Mon Dec 25 02:24:09.650733 2017] [wsgi:error] [pid 6956] Not Found: /.well-known/assetlinks.json
+[Mon Dec 25 02:53:47.863812 2017] [wsgi:error] [pid 6956] Not Found: /admin/config.php
+[Mon Dec 25 13:08:13.099618 2017] [wsgi:error] [pid 25864] Not Found: /robots.txt
+[Mon Dec 25 17:27:25.774209 2017] [wsgi:error] [pid 25864] Not Found: /robots.txt
+[Tue Dec 26 07:39:36.214672 2017] [wsgi:error] [pid 782] Not Found: /robots.txt
+[Tue Dec 26 07:39:37.151982 2017] [wsgi:error] [pid 782] Not Found: /robots.txt
+[Tue Dec 26 08:21:10.998520 2017] [wsgi:error] [pid 782] Not Found: /robots.txt
+[Tue Dec 26 15:51:03.051557 2017] [wsgi:error] [pid 782] Not Found: /robots.txt
+[Wed Dec 27 08:40:56.852343 2017] [wsgi:error] [pid 31346] Not Found: /robots.txt
+[Wed Dec 27 12:18:40.006012 2017] [wsgi:error] [pid 31346] Not Found: /admin/config.php
+[Wed Dec 27 13:02:22.540865 2017] [wsgi:error] [pid 31346] Not Found: /robots.txt
+[Wed Dec 27 14:00:02.770414 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:02:03.473500 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:04:04.140777 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:06:04.913149 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:08:05.492595 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:10:06.012630 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:12:06.762157 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:14:07.311619 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:16:07.830910 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:18:08.662441 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:20:09.142045 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:22:09.622475 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:24:10.400496 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:26:10.914816 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:28:11.446994 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:30:12.304033 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:32:12.981939 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:34:13.490689 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:36:14.372325 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:38:14.834156 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:40:15.313589 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:42:16.093630 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:44:16.598102 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:46:17.145219 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 14:48:17.921681 2017] [wsgi:error] [pid 31346] Forbidden (Referer checking failed - no Referer.): /
+[Wed Dec 27 21:01:50.530507 2017] [wsgi:error] [pid 31346] Not Found: /robots.txt
+[Wed Dec 27 23:34:17.244251 2017] [wsgi:error] [pid 31346] Not Found: /downloader/
+[Thu Dec 28 03:28:29.441435 2017] [wsgi:error] [pid 31346] Not Found: /cgi-bin/w3s/WsgiHttp.py
+[Thu Dec 28 03:28:29.514818 2017] [wsgi:error] [pid 31346] Not Found: /cgi-bin/Middle/WsgiHttp.py
+[Thu Dec 28 03:28:29.583305 2017] [wsgi:error] [pid 31346] Not Found: /time/
+[Thu Dec 28 17:32:17.035167 2017] [wsgi:error] [pid 22015] Not Found: /robots.txt
+[Thu Dec 28 17:32:18.046038 2017] [wsgi:error] [pid 22015] Not Found: /robots.txt
+[Thu Dec 28 18:30:03.254713 2017] [wsgi:error] [pid 22015] Not Found: /robots.txt
+[Thu Dec 28 23:52:35.197097 2017] [wsgi:error] [pid 22015] Not Found: /robots.txt
+[Fri Dec 29 00:54:35.129432 2017] [wsgi:error] [pid 22015] Not Found: /robots.txt
+[Fri Dec 29 07:04:05.982492 2017] [wsgi:error] [pid 17894] Not Found: /robots.txt
+[Fri Dec 29 07:23:57.218032 2017] [wsgi:error] [pid 17894] Not Found: /robots.txt
+[Fri Dec 29 07:23:57.631244 2017] [wsgi:error] [pid 17894] Not Found: /apple-app-site-association
+[Fri Dec 29 10:10:58.865377 2017] [wsgi:error] [pid 17894] Not Found: /.well-known/assetlinks.json
+[Fri Dec 29 12:59:47.975218 2017] [wsgi:error] [pid 17894] Not Found: /robots.txt
+[Fri Dec 29 13:14:21.319592 2017] [wsgi:error] [pid 17894] Not Found: /.well-known/apple-app-site-association
+[Fri Dec 29 15:36:49.249034 2017] [wsgi:error] [pid 17894] Not Found: /robots.txt
+[Fri Dec 29 15:36:49.374951 2017] [wsgi:error] [pid 17894] Not Found: /.well-known/apple-app-site-association
+[Fri Dec 29 18:28:36.399979 2017] [wsgi:error] [pid 17894] Not Found: /apple-app-site-association
+[Fri Dec 29 21:16:25.752524 2017] [wsgi:error] [pid 17894] Not Found: /.well-known/assetlinks.json
+[Sat Dec 30 01:40:26.551727 2017] [wsgi:error] [pid 17894] Not Found: /robots.txt
+[Sat Dec 30 09:55:33.691063 2017] [wsgi:error] [pid 5154] Not Found: /ews/exchange/
+[Sat Dec 30 11:44:17.917554 2017] [wsgi:error] [pid 5154] Not Found: /robots.txt
+[Sat Dec 30 12:21:29.288889 2017] [wsgi:error] [pid 5154] Not Found: /cn/launch/
+[Sat Dec 30 13:23:29.584713 2017] [wsgi:error] [pid 5154] Not Found: /robots.txt
+[Sat Dec 30 13:23:30.442024 2017] [wsgi:error] [pid 5154] Not Found: /robots.txt
+[Sat Dec 30 16:05:49.540464 2017] [ssl:error] [pid 12596] [client 178.79.164.44:57930] AH02042: rejecting client initiated renegotiation
+[Sat Dec 30 16:20:10.599978 2017] [wsgi:error] [pid 5154] Not Found: /robots.txt
+[Sat Dec 30 18:21:50.140145 2017] [wsgi:error] [pid 5154] Not Found: /robots.txt
+[Sat Dec 30 23:02:46.841510 2017] [wsgi:error] [pid 5154] Not Found: /robots.txt
+[Sun Dec 31 05:52:49.328808 2017] [wsgi:error] [pid 5154] Not Found: /admin/config.php
+[Sun Dec 31 11:36:04.893510 2017] [wsgi:error] [pid 2237] Not Found: /robots.txt
+[Sun Dec 31 23:04:29.064262 2017] [wsgi:error] [pid 2237] Not Found: /robots.txt
+[Mon Jan 01 01:11:56.153579 2018] [wsgi:error] [pid 2237] Not Found: /robots.txt
+[Mon Jan 01 11:41:00.396372 2018] [wsgi:error] [pid 29118] Not Found: /robots.txt
+[Mon Jan 01 14:06:07.885476 2018] [wsgi:error] [pid 29118] Not Found: /robots.txt
+[Mon Jan 01 14:53:36.325747 2018] [wsgi:error] [pid 29118] Not Found: /robots.txt
+[Mon Jan 01 15:47:01.944114 2018] [wsgi:error] [pid 29118] Not Found: /robots.txt
+[Mon Jan 01 15:47:02.809406 2018] [wsgi:error] [pid 29118] Not Found: /robots.txt
+[Tue Jan 02 04:39:31.391046 2018] [wsgi:error] [pid 29118] Not Found: /robots.txt
+[Tue Jan 02 11:05:52.702140 2018] [wsgi:error] [pid 2940] Not Found: /robots.txt
+[Tue Jan 02 12:13:20.195647 2018] [wsgi:error] [pid 2940] Not Found: /robots.txt
+[Tue Jan 02 15:13:34.022630 2018] [wsgi:error] [pid 2940] Not Found: /admin/config.php
+[Wed Jan 03 12:20:10.963355 2018] [wsgi:error] [pid 5497] Not Found: /Login.php
+[Wed Jan 03 12:39:20.187541 2018] [wsgi:error] [pid 5497] Not Found: /robots.txt
+[Wed Jan 03 16:45:25.980649 2018] [wsgi:error] [pid 5497] Not Found: /robots.txt
+[Wed Jan 03 16:45:26.986574 2018] [wsgi:error] [pid 5497] Not Found: /robots.txt
+[Wed Jan 03 16:49:38.199245 2018] [wsgi:error] [pid 5497] Not Found: /robots.txt
+[Wed Jan 03 17:59:19.559130 2018] [wsgi:error] [pid 5497] Not Found: /robots.txt
+[Thu Jan 04 00:23:32.615953 2018] [wsgi:error] [pid 5497] Not Found: /robots.txt
+[Thu Jan 04 04:35:59.423227 2018] [wsgi:error] [pid 5497] Not Found: /robots.txt
+[Thu Jan 04 16:05:03.050236 2018] [wsgi:error] [pid 30587] Not Found: /robots.txt
+[Fri Jan 05 04:25:15.742690 2018] [wsgi:error] [pid 30587] Not Found: /robots.txt
+[Fri Jan 05 04:25:16.199380 2018] [wsgi:error] [pid 30587] Not Found: /apple-app-site-association
+[Fri Jan 05 06:03:55.683880 2018] [wsgi:error] [pid 30587] Not Found: /robots.txt
+[Fri Jan 05 07:12:27.094100 2018] [wsgi:error] [pid 20228] Not Found: /.well-known/assetlinks.json

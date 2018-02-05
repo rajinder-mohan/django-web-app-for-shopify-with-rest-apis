@@ -1,0 +1,26 @@
+//-----------------merchant order place---------------------------
+https://ui.fashioncircle.de/orders/place
+requset method:POST
+requsest data
+{"OrderId":1
+"domain":"magentostore.com"
+"OrderUrl":"https://checkout.shopify.com/20635177/checkouts/3e62ee62f535a5c159bdc1c91e67c294/thank_you_token?key=9179b6147ffdbec36efc762cef03f702"
+"financial_status":"paid/unpaid"
+"platform":"Magento"
+"products":[{"id":1,"ProductQty":5},{"id":2,"ProductQty":5}]
+"paymentMethod":"COD"
+"customer_email":"ab@esn.com"
+"first_name":"rajinder"
+"last_name":"mohan"
+"customer_address":address
+"city":city
+"province":province
+"phone":phone
+"zipcode":zipcode
+"country":country
+"paid_by_merchant":"paid/pending"}
+Response if data not found in requset
+{'error':"Please enter order detail."}
+
+Success response
+{'success':"Successfully placed order."}

@@ -1,0 +1,139 @@
+   {% extends 'mvpadmin_layout.html' %}
+   {% load staticfiles %}
+
+   {% block title_block %}
+   <title>MVP Dashboard</title>
+   {% endblock %}
+
+
+   {% block content %}
+
+
+            <div class="container-fluid">
+
+                <!-- Page Heading -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <h1 class="page-header">
+                            Dashboard <small>Statistics Overview </small>
+                        </h1>
+                        
+                    </div>
+                </div>
+                <!-- /.row -->
+              <div class="row">
+
+                {% if account_type.admin == True %}
+                  
+
+                
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <img src="{% static 'images/wholesale-icon.png' %}">
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{total_vendors}}</div>
+                                        <div>Total Labels</div>
+                                    </div>
+                                </div>
+                            </div>
+                 
+                        </div>
+                    </div>
+               
+             
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <img src="{% static 'images/retailer-icon.png' %}">
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{total_merchants}}</div>
+                                        <div>Total Merchants</div>
+                                    </div>
+                                </div>
+                            </div>
+                 
+                        </div>
+                    </div>
+
+                    
+                {% else %}
+                <!-- /.row -->
+
+                
+                    <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        <img src="{% static 'images/added_product-icon.png' %}">
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{products_length}}</div>
+                                        <div>Products added</div>
+                                    </div>
+                                </div>
+                            </div>
+                 
+                        </div>
+                    </div>
+                {% endif %}
+
+                <div class="col-lg-3 col-md-6">
+                        <div class="panel panel-primary">
+                            <div class="panel-heading">
+                                <div class="row">
+                                    <div class="col-xs-3">
+                                        
+                                        <img src="{% static 'images/total_order-icon.png' %}">
+                                    </div>
+                                    <div class="col-xs-9 text-right">
+                                        <div class="huge">{{total_orders}}</div>
+                                        <div>Total Orders</div>
+                                    </div>
+                                </div>
+                            </div>
+                 
+                        </div>
+                    </div>
+               
+                </div>
+         <!--        
+                <table>
+                    <th>Username</th>
+                    <th>Email</th>
+                    <th>Platform</th>
+                    <th>Shopify Domain</th>
+                    <th>Main Domain</th>
+
+                    {% for merchant in merchants_list %}
+                    <tr>
+                        <td><a href="#?merchant_id={{merchant.merchant_id}}">{{merchant.username}}</a></td>
+                        <td>{{merchant.email}}</td>
+                        <td>{{merchant.platform}}</td>
+                        <td>{{merchant.shopify_domain}}</td>
+                        <td>{{merchant.main_domain}}</td>
+                    </tr>
+                    {% endfor %}
+
+                </table> -->
+
+                <!-- <select>
+                    {% for merchant in merchants_list %}
+                    <option value="">Merchant List</option>
+                    <option value="{{merchant}}">{{merchant}}</option>
+                    {% endfor %}
+                </select> -->
+
+            </div>
+            <!-- /.container-fluid -->
+
+
+
+   {% endblock %}     

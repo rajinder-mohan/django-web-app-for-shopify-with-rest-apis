@@ -1,0 +1,42 @@
+   {% extends 'mvpadmin_layout.html' %}
+
+
+   {% block title %}
+   Not Allowed
+   {% endblock %}
+
+   {% block css_block %}
+   <style type="text/css">
+   			.notallowed_message {
+	    text-align: center;
+	}
+
+	.notallowed_message h4 {
+	    display: inline-block;
+	}
+
+	i.fa.fa-exclamation-triangle {
+	    color: #333;
+	    font-size: 30px;
+	    padding-left: 5px;
+	    display: inline-block;
+	}
+
+	.notallowed_message p {
+	    color: #333;
+	}
+   </style>
+   
+   {% endblock %}
+   
+
+   {% block content %}
+
+   <div class="notallowed_message">
+   <div class="notallowed_heading">
+	   <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+	    <h4>Not Allowed</h4>
+    </div>
+   	<p>You are not allowed to view this page.</p>
+   </div>
+   {% endblock %}

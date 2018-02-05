@@ -1,0 +1,74 @@
+{% extends "vendor/mag_vend_base.html" %}
+{% load staticfiles %}
+{% block title %}
+Magento Register
+{% endblock %}
+{% block css %}
+  <link rel="stylesheet" href="{% static 'css/login.css' %}">
+{% endblock %}
+{% block content %}
+<div class="container">
+  <div class="row">
+      <div class="col-md-12">
+          <h1 class="text-center login-title">Apply for Fashion Circle  Vendor Membership </h1>
+          <div class="account-wall">
+              <!-- <img class="profile-img" src="https://lh5.googleusercontent.com/-b0-k99FZlyE/AAAAAAAAAAI/AAAAAAAAAAA/eu7opA4byxI/photo.jpg?sz=120"
+                  alt=""> -->
+                  <h5 class="success" style="display:none">Thanks. Your Account Registered Successfully, We Will Notify You Once Admin Approves Your Request</h5>
+                  <div class="logo-image">
+                  <img src="{% static '/images/Logo_Fashioncircle.png' %}" alt="FasionCircle Logo">
+                  </div>
+              <form class="form-signin inline" method="POST" action="/magento/vendor_register" id="signmagento">
+              {% csrf_token %}
+
+
+                     <div class="form-group email">
+                          <label for="first_name">Email</label>
+                          <input type="text" class="form-control email" placeholder="Email"  name="email"  >
+                          <h5 class="show_email_error" style="display:none"> EMAIL ALREADY EXISTS </h5>
+                    </div>
+
+                     <div class="form-group">
+                    <label for="last_name">Platform</label>
+                    <input type="text" class="form-control" readonly  name="platform" id="last_name" value="Magento"></div>
+
+
+                    <div class="form-group">
+                    <label for="vendor">Name</label>
+                    <input type="text" class="form-control name" placeholder="Name"  name="name" ></div>
+                    <h5 class="show_name_error" style="display:none"> VENDOR NAME ALREADY EXISTS</h5>
+
+                    <div class="form-group">
+                    <label for="website">Website</label>
+                    <input type="text" class="form-control website" name="website" type="url"  placeholder="Website" ></div>
+                    <h5 class="show_web_error" style="display:none"> WEBSITE ALREADY EXISTS</h5>
+
+
+
+                    <div class="form-group">
+                          <label for="country">Country</label>
+                          <select class="form-control" name="country" id="country" placeholder="Country">
+                            {% for country in all_countries %}
+                              <option value="{{country}}" {% if country == posted_data.country %}selected{% endif %}>{{country}}</option>
+                            {% endfor %}
+                          </select>
+                    </div>
+
+                    <div>
+                      {{form.as_p}}
+                    </div>
+
+                    <span id="labels_only">Retailers stop here - by invitation only!</span>
+
+                    <button class="btn btn-lg btn-primary btn-block" type="submit">
+                        Apply Now</button>
+
+                        <span id="terms-and-conditions">By clicking the “Apply now” button, you are agreeing to the Fashion Circle <a href="https://www.fashioncircle.de/terms-and-conditions/">Terms and Conditions</a>.</span>
+
+              </form>
+          </div>
+          <a href="/magento/vendor_login" class="text-center new-account">Sign in </a>
+      </div>
+  </div>
+</div>
+{% endblock %}
